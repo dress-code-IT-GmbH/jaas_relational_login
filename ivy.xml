@@ -3,8 +3,10 @@
     <info organisation="org.apache" module="JAAS_relational_login"/>
     <dependencies>
 	<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
-	<dependency org="org.springframework.security" name="spring-security-crypto" rev="5.1.3.RELEASE"/>
+        <dependency org="org.springframework.security" name="spring-security-crypto" rev="5.8.1"/>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+        <dependency org="org.springframework.security" name="spring-security-core" rev="5.8.1"/>    
 	<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-	<dependency org="commons-codec" name="commons-codec" rev="1.10"/>
+	<dependency org="commons-codec" name="commons-codec" rev="1.15"/>
     </dependencies>
 </ivy-module>
