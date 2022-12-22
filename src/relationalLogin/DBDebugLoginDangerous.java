@@ -16,6 +16,10 @@ import javax.security.auth.login.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.apache.commons.codec.digest.Md5Crypt;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
+import java.io.IOException;
+
 
 /**
  * Debugging Login Module to see what is used to authenticate against the database
@@ -40,7 +44,7 @@ public class DBDebugLoginDangerous extends SimpleLogin
 		Connection con = null;
 		PreparedStatement psu = null;
 
-        Logger logger = Logger.getLogger(DBLoginDebug.class.getName());
+        Logger logger = Logger.getLogger(DBDebugLoginDangerous.class.getName());
         FileHandler fh;
         try
         {
@@ -55,7 +59,6 @@ public class DBDebugLoginDangerous extends SimpleLogin
 		try
 		{
 			Class.forName(dbDriver);
-
 			if (dbUser != null)
 			   con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
 			else
