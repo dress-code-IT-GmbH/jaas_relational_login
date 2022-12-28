@@ -4,8 +4,9 @@
 name: Java CI
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+     - '*'
 
 jobs:
   build:
@@ -33,7 +34,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        release_name: Release ${{ github.ref_name }}
         draft: false
         prerelease: false
     - name: Upload Artifact
@@ -46,7 +47,23 @@ jobs:
         asset_path: target/JAAS_relational_login.jar
         asset_name: JAAS_relational_login.jar
         asset_content_type: application/java-archive
+    - name: Set maven version from tag
+      run: mvn version:set -DnewVersion=${{ github.ref_name }}
+    
     - name: Publish package
-      run: mvn --batch-mode deploy
+      run: |
+        if [[ "$GITHUB_REF" = refs/heads/* ]]; then
+            export VERSIONING_GIT_BRANCH=${GITHUB_REF#refs/heads/};
+            exit 1
+        elif [[ "$GITHUB_REF" = refs/tags/* ]]; then
+            export VERSIONING_GIT_TAG=${GITHUB_REF#refs/tags/v};
+            mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$VERSIONING_GIT_TAG
+        elif [[ "$GITHUB_REF" = refs/pull/*/merge ]]; then
+            VERSIONING_GIT_BRANCH=${GITHUB_REF#refs/};
+            export VERSIONING_GIT_BRANCH=${VERSIONING_GIT_BRANCH%/merge};
+            exit 1
+        fi
+        mvn --batch-mode deploy
+        git checkout pom.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
