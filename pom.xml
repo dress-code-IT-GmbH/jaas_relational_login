@@ -1,0 +1,27 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.eu.glas</groupId>
+	<artifactId>jaas-relational-login</artifactId>
+	<version>1</version>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.3.0</version>
+				<configuration>
+					<includes>
+						<include>target/JAAS_relational_login.jar</include>
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/BiP-org/jaas_relational_login</url>
+    </repository>
+  </distributionManagement>	
+</project>

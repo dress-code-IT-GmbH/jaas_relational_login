@@ -47,3 +47,7 @@ jobs:
         asset_path: target/JAAS_relational_login.jar
         asset_name: JAAS_relational_login.jar
         asset_content_type: application/java-archive
+    - name: Publish package
+      run: mvn --batch-mode deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
