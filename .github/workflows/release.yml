@@ -36,7 +36,7 @@ jobs:
          target/JAAS_relational_login.jar
 
     - name: Set maven version from tag
-      run: mvn version:set -DnewVersion=${{ github.ref_name }}
+      run: mvn versions:set -DnewVersion=${{ github.ref_name }}
     
     - name: Publish package
       run: |
