@@ -27,16 +27,12 @@ jobs:
       with:
         name: Package
         path: /home/runner/work/jaas_relational_login/jaas_relational_login/target/JAAS_relational_login.jar
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1.0.0
+    - name: Create a Release
+      uses: actions/checkout@v4
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref_name }}
-        draft: false
-        prerelease: false
+        title: Release ${{ github.ref_name }}
     - name: Upload Artifact
       id: upload_artifact
       uses: actions/upload-release-asset@v1.0.1
