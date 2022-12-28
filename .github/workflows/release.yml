@@ -28,7 +28,7 @@ jobs:
         name: Package
         path: /home/runner/work/jaas_relational_login/jaas_relational_login/target/JAAS_relational_login.jar
     - name: Create a Release
-      uses: actions/checkout@v4
+      uses: elgohr/Github-Release-Action@v4
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
