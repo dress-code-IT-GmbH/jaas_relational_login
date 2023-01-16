@@ -8,6 +8,26 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<configuration>
+				  <tasks>
+				    <taskdef resource="net/sf/antcontrib/antcontrib.properties"
+				      classpathref="maven.plugin.classpath" />
+				    <ant antfile="${basedir}/build.xml">
+				      <target name="jar"/>
+				    </ant>
+				  </tasks>
+				</configuration>
+				<dependencies>
+				  <dependency>
+				    <groupId>ant-contrib</groupId>
+				    <artifactId>ant-contrib</artifactId>
+				    <version>1.0b3</version>
+				  </dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.3.0</version>
 				<configuration>
