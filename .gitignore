@@ -1,4 +1,3 @@
-sample_jaas.config
 build/
 dist/
 ivy/
@@ -136,3 +135,4 @@ dmypy.json
 .pyre/
 .pytype/
 cython_debug/
+.test_env

@@ -1,0 +1,16 @@
+/** Login Configuration for the JAAS Sample Application **/
+
+/** Note that debug_unsafe is .. unsafe. It will log user passwords **/
+
+ShibUserPassAuth  {
+   relationalLogin.PGCryptLogin required
+   debug_unsafe="false"
+   dbDriver="org.postgresql.Driver"
+   userTable="users"
+   userColumn="name"
+   passColumn="passwd"
+   dbURL="jdbc:postgresql://127.1:30343/postgres"
+   dbUser="postgres"
+   dbPassword="mysecretpassword"
+   errorMessage="Auth failed";
+};
