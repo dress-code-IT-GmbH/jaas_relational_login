@@ -137,3 +137,4 @@ dmypy.json
 .pytype/
 cython_debug/
 .test_env
+/.git-versioned-pom.xml
